@@ -30,6 +30,6 @@
         "arrow-spacing": 1
       }
     ],
-    "no-console": "warn"
+    "no-console": 0
   }
 }
