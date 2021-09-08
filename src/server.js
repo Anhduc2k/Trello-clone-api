@@ -1,6 +1,7 @@
 import express from 'express'
 import { connectDB } from './config/mongodb'
 import { env } from './config/environtment'
+import { apiV1 } from './routes/v1'
 
 connectDB()
   .then(() => console.log('Connected succsessfully to database server!'))
@@ -12,9 +13,10 @@ connectDB()
 
 const boostServer = () => {
   const app = express()
-  app.get('/test', async (req, res) => {
-    res.end('<h1>Hello Eng Ger dzzzz</h1>')
-  })
+  //Enable req.body data
+  app.use(express.json())
+  //Use APIs v1
+  app.use('/v1', apiV1)
 
   app.listen(env.APP_PORT, env.APP_HOST, () => {
     console.log(`Hello Eng Ger, ${env.APP_HOST}:${env.APP_PORT}/`)
